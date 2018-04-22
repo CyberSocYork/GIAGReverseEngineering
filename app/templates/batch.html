@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3">
+
+                <div class="input-group">
+
+                    <input type="text" class="form-control" placeholder="Enter Api Key" id="apiInput">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="button" onclick="getApiKey()"> Submit</button>
+                    </div>
+
+                </div>
+                <br>
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Current Api Keys</div>
+                    <div class="panel-body">
+
+                        <div class="list-group" id="apiList">
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-lg-6">
+
+                <ul class="nav nav-pills">
+                    <li class="active"><a data-toggle="pill" href="#menu1">Hash</a></li>
+
+                </ul>
+                <div class="tab-content">
+
+                    <div id="menu1" class="tab-pane fade in active">
+
+                        <div class="input-group">
+                            <textarea class="form-control" id="hashInput"></textarea>
+
+                        </div>
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="button" onclick="getBatch()" data-toggle="modal"
+                                    data-target="#mymodal" id="submit"> Submit
+                            </button>
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <button type="button" class="btn btn-info" id="clock"></button>
+
+                <div class="container-fluid" id="results">
+
+                </div>
+
+            </div>
+            <div class="col-lg-3">
+
+                <button type="button" class ="btn btn-primary" data-toggle="modal" data-target="#helpModal">
+                    Help
+                </button>
+
+
+                <div class="modal fade" id="helpModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalLabel">Help</h5>
+                            </div>
+                            <div class="modal-body" id="help-Body">
+
+                                Hashes need to be separated by a space of any size.
+                                At the moment if the api limit is reached then the result will display "api limit reached".
+                                In the future I will be working automatically re-submitting hashes that hit the limit and all
+                                you have to do is sit back and wait.
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+{% endblock %}

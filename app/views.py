@@ -1,0 +1,68 @@
+import hashlib
+import os
+import time
+import json
+
+from flask import render_template, request, jsonify
+
+from app import app
+
+
+
+@app.route('/', methods=["POST"])
+def hello_world():
+
+    if request.method == "POST":
+        username = request.json['username']
+        password = request.json['password']
+        authId,authPassword = checkParams(request)
+        response = auth(authId,authPassword)
+
+        if response:
+            if username == "Alice" and password == "password":
+                return "welcome back alice"
+            else:
+                return "invalid login"
+        else:
+            return "invalid login"
+
+    else:
+        return ""
+
+
+@app.route('/getUserNames', methods = ["POST"])
+def getUserNames():
+
+    if request.method == "POST":
+        authId, authPassword = checkParams(request)
+
+        if auth(authId,authPassword):
+            with open((os.path.join(os.path.dirname(__file__),'entries.json')),'r') as f:
+                return jsonify(json.load(f))
+        else:
+            return ""
+    else:
+        return ""
+
+
+
+@app.route('/getAuthentication',methods=["POST"])
+def getAuthentication():
+
+    return "Username : cyberSocAdmin , Password : toor"
+
+
+
+def checkParams(request):
+
+
+    authId = request.json['authId']
+    authPassword = request.json['authPassword']
+    return authId,authPassword
+
+def auth(authId, authPassword):
+
+    if authId == "cyberSocAdmin" and authPassword == "toor":
+        return True
+    else:
+        return False

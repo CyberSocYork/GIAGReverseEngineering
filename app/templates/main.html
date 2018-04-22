@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3">
+
+                <div class="input-group">
+
+                    <input type="text" class="form-control" placeholder="Enter Api Key" id="apiInput">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="button" onclick="getApiKey()"> Submit</button>
+                    </div>
+                </div>
+
+                <br>
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Current Api Keys</div>
+                    <div class="panel-body">
+
+                        <div class="list-group" id="apiList">
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-lg-6">
+
+                <ul class="nav nav-pills">
+                    <li class="active">
+                        <a data-toggle="pill" href="#home">Url</a></li>
+                    <li><a data-toggle="pill" href="#menu1">File</a></li>
+                    <li><a data-toggle="pill" href="#menu2">Hash</a></li>
+                    <li><a data-toggle="pill" href="#menu3">IP address</a></li>
+
+
+                </ul>
+
+
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Url" id="urlInput">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="button" onclick="getUrl('url')"> Submit</button>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="menu1" class="tab-pane fade">
+
+
+                        <form method="post" enctype="multipart/form-data" id="upload-file">
+                            <input type="file" name="file">
+                            <button class="btn-default" type="button" id="upload-file-btn"> Upload</button>
+
+                        </form>
+                    </div>
+
+
+                    <div id="menu2" class="tab-pane fade">
+
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="other" id="hashInput">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="button" onclick=getUrl("other")> Submit</button>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="menu3" class="tab-pane fade">
+
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="IP Input" id="IPinput">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="button" onclick=getIP()> Submit</button>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="container">
+                    <div class="col-md-8">
+                        <div class="list-group" id="results">
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-lg-1">
+
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodal">
+                    Help
+                </button>
+
+                <div class="modal fade" id="mymodal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalLabel">Help</h5>
+                            </div>
+                            <div class="modal-body" id="help-Body">
+
+                                Hi there, this is my website to use virus total with a virus total API key (which can be
+                                obtained by creating a free account on www.virustotal.com)<i class="em em-grinning"></i>.
+                                At the moment if a hash,url or file has not been previously analysed by virus total then
+                                this website wont pick it up
+                                This is because virus total treats api requests with the lowest priority and it takes
+                                hours to get a result on a new hash,file,url etc...
+                                However I'm working on fixing this.
+                                NOTE: This website is buggy so it may crash.<br>
+                                <br>
+                                ChangeLog:<br>
+
+                                 Version 1.3.2<br>
+
+                                - Removed christmas theme<br>
+
+                                Version 1.3.1<br>
+
+                                - Added a Christmas theme, because why not?<br>
+
+                                Version 1.3<br>
+                                - Improved batch hash to automatically re-send hashes that reached the api limit and
+                                there is also a timer that estimates how long it will take to process all the
+                                hashes.<br>
+                                - Implemented file upload.<br>
+                                - Added more bugs - please tell me of any problems :)<br>
+
+
+                                Version 1.2:<br>
+                                - Add Batch hash to check multiple hashes at once (no threading)<br>
+
+                                Version 1.1:<br>
+                                - Added McAfee covered button<br>
+                                - Added cookies support for remembering previously entered api keys<br>
+                                - Added support for mulitiple apiKeys that changes the key on each sumbmission to
+                                prevent Virus Totals 4/min request limit<br>
+                                - Bugs Squashed<br>
+                                Release : 1.00<br>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="mcafeeCovered">
+                <span class="label label-default">
+                    <span> McAfee Covered?</span>
+
+                </span>
+                </div>
+
+            </div>
+            <div class="col-lg-2">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="button" data-toggle="popover" title="Be warned"
+                            data-content="  Not stable, be aware  " onclick="location.href = '/batch_check'"> BatchCheck
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+
+
+{% endblock %}
