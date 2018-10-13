@@ -13,8 +13,12 @@ from app import app
 def hello_world():
 
     if request.method == "POST":
-        username = request.json['username']
-        password = request.json['password']
+
+        try:
+            username = request.json['username']
+            password = request.json['password']
+        except KeyError:
+            return "Invalid request"
 
         if username == "Alice" and password == "password":
             return "welcome back alice"
@@ -45,15 +49,18 @@ def getUserNames():
 @app.route('/getAuthentication',methods=["GET"])
 def getAuthentication():
 
-    return "Username : cyberSocAdmin , Password : toor"
+    return "authId : cyberSocAdmin , authPassword : toor"
 
 
 
 def checkParams(request):
 
+    try:
+        authId = request.json['authId']
+        authPassword = request.json['authPassword']
+    except KeyError:
+        return None, None
 
-    authId = request.json['authId']
-    authPassword = request.json['authPassword']
     return authId,authPassword
 
 def auth(authId, authPassword):
