@@ -15,16 +15,12 @@ def hello_world():
     if request.method == "POST":
         username = request.json['username']
         password = request.json['password']
-        authId,authPassword = checkParams(request)
-        response = auth(authId,authPassword)
 
-        if response:
-            if username == "Alice" and password == "password":
-                return "welcome back alice"
-            else:
-                return "invalid login"
+        if username == "Alice" and password == "password":
+            return "welcome back alice"
         else:
             return "invalid login"
+
 
     else:
         return ""
