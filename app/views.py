@@ -42,7 +42,7 @@ def getUserNames():
 
 
 
-@app.route('/getAuthentication',methods=["POST"])
+@app.route('/getAuthentication',methods=["GET"])
 def getAuthentication():
 
     return "Username : cyberSocAdmin , Password : toor"
