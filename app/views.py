@@ -9,9 +9,11 @@ from app import app
 
 
 
-@app.route('/', methods=["POST"])
+@app.route('/', methods=["POST","GET"])
 def hello_world():
 
+    if request.method == "GET":
+        return "The SQL challenge has now been taken down. I'll provide the source code for it soon"
     if request.method == "POST":
 
         try:
