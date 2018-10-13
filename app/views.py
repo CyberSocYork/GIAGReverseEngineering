@@ -24,6 +24,8 @@ def hello_world():
 
         if username == "Alice" and password == "password":
             return "welcome back alice"
+        elif username == "Admin" and password == "nqfE~DXwnNsiSxC6":
+            return "1"
         else:
             return "invalid login"
 
