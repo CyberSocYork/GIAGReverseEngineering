@@ -50,7 +50,7 @@ def getUserNames():
 
 
 
-@app.route('/getAuthentication',methods=["GET"])
+@app.route('/getAdmin',methods=["GET"])
 def getAuthentication():
 
     return "authId : cyberSocAdmin , authPassword : toor"
